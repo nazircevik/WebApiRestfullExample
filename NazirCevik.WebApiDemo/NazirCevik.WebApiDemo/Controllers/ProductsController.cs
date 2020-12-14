@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NazirCevik.WebApiDemo.DataAcces;
 using NazirCevik.WebApiDemo.Entities;
 using System;
@@ -17,6 +18,7 @@ namespace NazirCevik.WebApiDemo.Controllers
             _productDal = productDal;
         }
         [HttpGet("")]
+        [Authorize(Roles = "Editor")]
         public IActionResult Get()
         {
             var products = _productDal.GetList();
