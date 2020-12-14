@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NazirCevik.WebApiDemo.DataAcces;
+using NazirCevik.WebApiDemo.Formatters;
 
 namespace NazirCevik.WebApiDemo
 {
@@ -28,6 +29,12 @@ namespace NazirCevik.WebApiDemo
         {
             services.AddControllers();
             services.AddScoped<IProductDal, EfProductDal>();
+            services.AddRouting();
+            services.AddMvc(options =>
+            {
+                options.OutputFormatters.Add(new VcardOutputFormatter());
+            }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +53,9 @@ namespace NazirCevik.WebApiDemo
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+        name: "DefaultRoot",
+        pattern: "api/{controller=Products}/{action=Get}/{id?}");
             });
         }
     }
