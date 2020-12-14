@@ -18,7 +18,7 @@ namespace NazirCevik.WebApiDemo.Controllers
             _productDal = productDal;
         }
         [HttpGet("")]
-        [Authorize(Roles = "Editor")]
+        [Authorize(Roles = "admin")]
         public IActionResult Get()
         {
             var products = _productDal.GetList();

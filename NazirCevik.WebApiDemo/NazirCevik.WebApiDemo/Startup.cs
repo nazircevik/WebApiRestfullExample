@@ -46,7 +46,7 @@ namespace NazirCevik.WebApiDemo
             {
                 app.UseDeveloperExceptionPage();
             }
-          //  app.UseAuthentication();
+   
             app.UseMiddleware<AuthenticationMiddleware>();
             app.UseHttpsRedirection();
 

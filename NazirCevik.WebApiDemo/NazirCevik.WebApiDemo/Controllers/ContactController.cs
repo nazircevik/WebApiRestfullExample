@@ -14,7 +14,7 @@ namespace NazirCevik.WebApiDemo.Controllers
     public class ContactController : ControllerBase
     {
         [HttpGet("")]
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles ="admin")]
         public List<ContactModel> Get()
         {
             return new List<ContactModel>
